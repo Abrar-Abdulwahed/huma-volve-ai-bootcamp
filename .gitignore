@@ -1,0 +1,5 @@
+faiss_telecom_index
+.env
+.venv
+.vscode
+RAG_SLA_Business_Impact.png
