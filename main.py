@@ -3,8 +3,6 @@ from fastapi import FastAPI
 from src.config.config_parser import settings
 from src.logging.logger import logger
 from src.core.factories import ModelFactory
-from src.vectorstore.database import VectorDatabaseRepository
-from src.routers import ingest_router, query_router
  
 @asynccontextmanager
 async def lifespan(app: FastAPI):
