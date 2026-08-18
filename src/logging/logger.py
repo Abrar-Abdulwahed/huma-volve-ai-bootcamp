@@ -22,3 +22,4 @@ def get_logger(name: str = "RAG") -> logging.Logger:
     return logger
 
 logger = get_logger()
+
