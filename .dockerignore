@@ -1,0 +1,9 @@
+venv/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.git/
+tests/
+pytest.ini
+Telecom_Internal_KB.txt

@@ -3,12 +3,22 @@ from fastapi import FastAPI
 from src.config.config_parser import settings
 from src.logging.logger import logger
 from src.core.factories import ModelFactory
+from src.vectorstore.database import VectorDatabaseRepository
+from src.routers import ingest_router, query_router
  
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logger.info("Starting application...")
     ModelFactory.get_embeddings()
     ModelFactory.get_llm()
+
+    try:
+        repo = VectorDatabaseRepository()
+        repo.load_index()
+        logger.info("✅ FAISS Vector Index pre-loaded into memory.")
+    except Exception as e:
+        logger.warning(f"⚠️ Vector DB not pre-loaded: {str(e)}. (Upload a file via /api/v1/ingest to initialize).")
+        
  
     yield 
     logger.info("Shutting down application...")
@@ -20,7 +30,10 @@ app = FastAPI(
     lifespan=lifespan
 )
 
-@app.get("/health")
+app.include_router(ingest_router.router)
+app.include_router(query_router.router)
+
+@app.get("/", tags=["Health Check"])
 def health_check():
     return {
         "status": "healthy",
