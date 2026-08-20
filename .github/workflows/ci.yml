@@ -30,5 +30,6 @@ jobs:
         env:
           GOOGLE_API_KEY: "dummy_key_for_ci_testing"
           HF_HUB_DISABLE_XET: "1"
+          PYTHONPATH: "."
         run: |
-          pytest -v
+          python -m pytest -v
