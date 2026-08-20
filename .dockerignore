@@ -1,9 +1,14 @@
-venv/
 .venv/
+venv/
+env/
 __pycache__/
 *.pyc
 .pytest_cache/
 .git/
+.gitignore
+.env
+app.log
+*.log
 tests/
 pytest.ini
-Telecom_Internal_KB.txt
+شرح_شرائح_RAG_والوكلاء_والاتجاهات.docx
